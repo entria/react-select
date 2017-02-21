@@ -1182,6 +1182,7 @@ var Select = _react2['default'].createClass({
 		options: _react2['default'].PropTypes.array, // array of options
 		pageSize: _react2['default'].PropTypes.number, // number of entries to page when using page up/down keys
 		placeholder: stringOrNode, // field placeholder, displayed when there's no value
+		placeholderStyle: _react2['default'].PropTypes.object, // optional style to apply to the placeholder
 		required: _react2['default'].PropTypes.bool, // applies HTML5 required attribute when needed
 		resetValue: _react2['default'].PropTypes.any, // value to use when you clear the control
 		scrollMenuIntoView: _react2['default'].PropTypes.bool, // boolean to enable the viewport to shift so that the full menu fully visible when engaged
@@ -1441,7 +1442,7 @@ var Select = _react2['default'].createClass({
 			});
 		} else {
 			// otherwise, focus the input and open the menu
-			this._openAfterFocus = true;
+			this._openAfterFocus = this.props.openOnFocus;
 			this.focus();
 		}
 	},
@@ -1916,7 +1917,7 @@ var Select = _react2['default'].createClass({
 		if (!valueArray.length) {
 			return !this.state.inputValue ? _react2['default'].createElement(
 				'div',
-				{ className: 'Select-placeholder' },
+				{ className: 'Select-placeholder', style: this.props.placeholderStyle },
 				this.props.placeholder
 			) : null;
 		}
